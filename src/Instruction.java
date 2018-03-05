@@ -218,19 +218,9 @@ public class Instruction {
 	}
 
 	public String representation(boolean hex) {
-		if(r_type) {
-			if(hex) {
-				return String.format("%-22s",instruct);
-			}
+		if(r_type) 
 			return String.format("%-22s", instruct);
-		} else {
-			if(hex) {
-				return String.format("%-22s (OP:0x%x, RS:0x%x, RT:0x%x, IMM:0x%x)", 
-						instruct, opcode, rs, rt, imm);
-			}
-			return String.format("%-22s (OP:%d, RS:%d, RT:%d, IMM:%d)", 
+		else return String.format("%-22s (OP:%d, RS:%d, RT:%d, IMM:%d)", 
 					instruct, opcode, rs, rt, imm);
-		}
-
 	}
 }
