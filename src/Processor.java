@@ -14,14 +14,14 @@ public class Processor {
 	private MemoryFile memory;
 	private ALU alu;
 
-	private InstructionMemoryFile instructions;
+	private InstructionStorage instructions;
 
 	/**
 	 * Creates a new processor with a zeroes register and memory
 	 */
 	public Processor() {
 		pc = new ProgramCounter();
-		instructions = new InstructionMemoryFile();
+		instructions = new InstructionStorage();
 		register = new RegisterFile();
 		alu = new ALU();
 		memory = new MemoryFile();
@@ -64,6 +64,8 @@ public class Processor {
 			return;
 		}
 
+		//5 stages of mips simulation
+		
 		//Fetch
 		i = instructions.fetch(pc);
 		Control control = new Control(i);
@@ -104,17 +106,11 @@ public class Processor {
 		return value1;
 	}
 
-	/**
-	 * Returns true if the simulation is done
-	 * @return
-	 */
+	//returns true when done
 	public boolean isDone() {
 		return pc.get() >= instructions.length() || instructions.fetch(pc).isExit();
 	}
 
-	/**
-	 * @return the pc value
-	 */
 	public int getPcValue() {
 		return pc.get();
 	}

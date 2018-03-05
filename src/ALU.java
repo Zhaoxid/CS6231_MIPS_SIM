@@ -1,7 +1,4 @@
-
-/**
- * The mathematical/logical unit of the mips processor
- */
+//ALU for mips, performing operations
 public class ALU {
 	public static final short AND = 0;
 	public static final short OR = 1;

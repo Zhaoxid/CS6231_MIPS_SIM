@@ -1,7 +1,7 @@
 /**
  * The processor register file
  */
-public class RegisterFile extends DataField {
+public class RegisterFile extends DataChanges {
 	private int rr1;
 	private int rr2;
 	private int wr;

@@ -1,14 +1,12 @@
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * An abstract data field that keeps track of changed values
- */
-public abstract class DataField {
+//Keep track of changed values
+public abstract class DataChanges {
 	private int[] data;
 	private List<Integer> changedFields;
 
-	public DataField(int size) {
+	public DataChanges(int size) {
 		data = new int[size];
 		reset();
 	}

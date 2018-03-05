@@ -8,15 +8,11 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.SwingUtilities;
 
-/**
- * A main class that ties together the GUI with the processor simulation
- */
 @SuppressWarnings("rawtypes")
 public class Controller {
 	private GUI gui;
 	private Processor processor;
 	private List<Instruction> instructions;
-
 
 	private DefaultListModel instructionModel;
 	private DefaultListModel registerModel;

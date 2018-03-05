@@ -64,8 +64,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="DataField" project="mips_sim" file="/mips_sim/src/DataField.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="8" language="java" name="DataChanges" project="mips_sim" file="/mips_sim/src/DataChanges.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1262" y="132"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -100,8 +100,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="InstructionMemoryFile" project="mips_sim" 
-    file="/mips_sim/src/InstructionMemoryFile.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="12" language="java" name="InstructionStorage" project="mips_sim" 
+    file="/mips_sim/src/InstructionStorage.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="992" y="870"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
