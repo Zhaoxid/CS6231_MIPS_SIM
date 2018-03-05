@@ -1,29 +1,21 @@
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
-/**
- * A mips instruction representation
- */
 public class Instruction {
-	private String repr;
+	private String instruct;
 	private short opcode = 0;
-	private short funct = 0;
-	private short rd = 0;
-	private short rs = 0;
-	private short rt = 0;
-	private short imm = 0;
+	private short r_type_opcode = 0;
 	private boolean r_type = false;
 	private boolean i_type = false;
 	private boolean is_exit;
 	private boolean is_nop;
+	private short rd = 0;
+	private short rs = 0;
+	private short rt = 0;
+	private short imm = 0;
 
-	/**
-	 * Create a new mips instruction from a line of mips assembly
-	 * @param line A line of valid mips assembly, within the supported subset
-	 * @throws Exception if the instruction could not be parsed
-	 */
 	public Instruction(String line) throws Exception {
-		repr = line;
+		instruct = line;
 
 		line = line.replaceAll(",", "");
 		StringTokenizer tokens = new StringTokenizer(line, " ");
@@ -38,22 +30,22 @@ public class Instruction {
 		} catch(NoSuchElementException e) {}
 
 		if(op.equalsIgnoreCase("add")) {
-			funct = 0x20;
+			r_type_opcode = 0x20;
 			r_type = true;
 		} else if(op.equalsIgnoreCase("sub")) {
-			funct = 0x22;
+			r_type_opcode = 0x22;
 			r_type = true;
 		} else if(op.equalsIgnoreCase("and")) {
-			funct = 0x24;
+			r_type_opcode = 0x24;
 			r_type = true;
 		} else if(op.equalsIgnoreCase("or")) {
-			funct = 0x25;
+			r_type_opcode = 0x25;
 			r_type = true;
 		} else if(op.equalsIgnoreCase("nor")) {
-			funct = 0x27;
+			r_type_opcode = 0x27;
 			r_type = true;
 		} else if(op.equalsIgnoreCase("slt")) {
-			funct = 0x2a;
+			r_type_opcode = 0x2a;
 			r_type = true;
 		}
 
@@ -171,8 +163,8 @@ public class Instruction {
 	}
 
 
-	public String getRepr() {
-		return repr;
+	public String getInstruct() {
+		return instruct;
 	}
 
 
@@ -182,7 +174,7 @@ public class Instruction {
 
 
 	public short getFunct() {
-		return funct;
+		return r_type_opcode;
 	}
 
 
@@ -222,22 +214,22 @@ public class Instruction {
 
 	@Override
 	public String toString() {
-		return String.format("%s", repr);
+		return String.format("%s", instruct);
 	}
 
 	public String representation(boolean hex) {
 		if(r_type) {
 			if(hex) {
-				return String.format("%-22s",repr);
+				return String.format("%-22s",instruct);
 			}
-			return String.format("%-22s", repr);
+			return String.format("%-22s", instruct);
 		} else {
 			if(hex) {
 				return String.format("%-22s (OP:0x%x, RS:0x%x, RT:0x%x, IMM:0x%x)", 
-						repr, opcode, rs, rt, imm);
+						instruct, opcode, rs, rt, imm);
 			}
 			return String.format("%-22s (OP:%d, RS:%d, RT:%d, IMM:%d)", 
-					repr, opcode, rs, rt, imm);
+					instruct, opcode, rs, rt, imm);
 		}
 
 	}
