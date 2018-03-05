@@ -108,6 +108,11 @@ public class GUI {
 				.addComponent(registerPane, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE)
 				.addComponent(dataPane, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE)
 		);
+		
+		JLabel lblNewLabel_2 = new JLabel("Memory List");
+		lblNewLabel_2.setFont(new Font("Lucida Grande", Font.BOLD, 15));
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		dataPane.setColumnHeaderView(lblNewLabel_2);
 		rightPanel.setLayout(gl_rightPanel);
 		frame.getContentPane().add(topPanel, BorderLayout.NORTH);
 		JButton chooseButton = new JButton("Choose Input Text File");
