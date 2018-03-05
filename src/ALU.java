@@ -1,5 +1,4 @@
 
-
 /**
  * The mathematical/logical unit of the mips processor
  */
@@ -12,15 +11,13 @@ public class ALU {
 	public static final short NOR = 12;
 	
 	private int out;
-	/**
-	 * @return the out value
-	 */
+
 	public int getOut() {
 		return out;
 	}
 
 	/**
-	 * @return the zero line control
+	  @return the zero line control
 	 */
 	public boolean isZero() {
 		return zero;
