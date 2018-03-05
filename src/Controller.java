@@ -11,11 +11,12 @@ import javax.swing.SwingUtilities;
 /**
  * A main class that ties together the GUI with the processor simulation
  */
-@SuppressWarnings({"rawtypes", "unchecked"})
+@SuppressWarnings("rawtypes")
 public class Controller {
 	private GUI gui;
 	private Processor processor;
 	private List<Instruction> instructions;
+
 
 	private DefaultListModel instructionModel;
 	private DefaultListModel registerModel;
@@ -40,9 +41,7 @@ public class Controller {
 		gui.setMemoryListModel(memoryModel);
 	}
 
-	/**
-	 * Refresh the interface with the current processor state
-	 */
+@SuppressWarnings("unchecked")
 	private void refresh() {
 		int pc = processor.getPcValue();
 		gui.setPc(pc);
@@ -136,6 +135,7 @@ public class Controller {
 		processor.reset();
 	}
 
+	@SuppressWarnings("unchecked")
 	private void renderInstructions() {
 		instructionModel.clear();
 		for(Instruction i : instructions) {
