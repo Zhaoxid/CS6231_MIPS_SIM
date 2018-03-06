@@ -54,6 +54,7 @@ public class Controller {
 
 		int[] registerData = processor.getRegisters();
 		List<Integer> changedRegisters = processor.getChangedRegisters();
+		
 		for(int index : changedRegisters) {
 			String repr = String.format(
 					"%s: %s", RegisterFile.name(index), string_value(registerData[index]));

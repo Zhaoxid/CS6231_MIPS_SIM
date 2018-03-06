@@ -30,7 +30,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class GUI {
 	private JFrame frame;
-	private JCheckBox hexBox;
 	private GUIListener listener;
 	private String filename;
 	private JList instructionList;
@@ -197,51 +196,35 @@ public class GUI {
 						listener.onReset();	
 					}
 				});
-		hexBox = new JCheckBox("Hex");
 		GroupLayout gl_botPanel = new GroupLayout(botPanel);
 		gl_botPanel.setHorizontalGroup(
 			gl_botPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_botPanel.createSequentialGroup()
 					.addGap(55)
 					.addComponent(pcPane, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)
-					.addGap(179)
+					.addGap(241)
 					.addComponent(stepButton)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(runButton)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(stopButton)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(resetButton)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(hexBox)
-					.addGap(21))
+					.addContainerGap())
 		);
 		gl_botPanel.setVerticalGroup(
-			gl_botPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_botPanel.createSequentialGroup()
+			gl_botPanel.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_botPanel.createSequentialGroup()
 					.addContainerGap(10, Short.MAX_VALUE)
 					.addGroup(gl_botPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(stepButton)
-						.addComponent(runButton)
 						.addComponent(pcPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(stopButton)
 						.addComponent(resetButton)
-						.addComponent(hexBox))
+						.addComponent(stopButton)
+						.addComponent(runButton)
+						.addComponent(stepButton))
 					.addContainerGap())
 		);
 		botPanel.setLayout(gl_botPanel);
-		
-				hexBox.addItemListener(new ItemListener() {
-		
-					@Override
-					public void itemStateChanged(ItemEvent e) {
-						if(hexBox.isSelected()){
-							listener.onHex();
-						} else {
-							listener.onDec();
-						}
-					}
-				});
 		frame.setSize(839, 486);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
