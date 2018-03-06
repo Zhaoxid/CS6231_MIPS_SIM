@@ -57,7 +57,6 @@ public class GUI {
 		lblNewLabel.setFont(new Font("Lucida Grande", Font.BOLD, 15));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		registerPane.setColumnHeaderView(lblNewLabel);
-		JPanel topPanel = new JPanel();
 
 		final JFileChooser fileChooser = new JFileChooser(System.getProperty("user.dir"));
 
@@ -91,70 +90,23 @@ public class GUI {
 		instructionPane.setColumnHeaderView(lblNewLabel_1);
 		leftPanel.setLayout(gl_leftPanel);
 		frame.getContentPane().add(rightPanel, BorderLayout.EAST);
-		GroupLayout gl_rightPanel = new GroupLayout(rightPanel);
-		gl_rightPanel.setHorizontalGroup(
-			gl_rightPanel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_rightPanel.createSequentialGroup()
-					.addComponent(registerPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addComponent(dataPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-		);
-		gl_rightPanel.setVerticalGroup(
-			gl_rightPanel.createParallelGroup(Alignment.LEADING)
-				.addComponent(registerPane, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE)
-				.addComponent(dataPane, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE)
-		);
 		
-		JLabel lblNewLabel_2 = new JLabel("Memory List");
-		lblNewLabel_2.setFont(new Font("Lucida Grande", Font.BOLD, 15));
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		dataPane.setColumnHeaderView(lblNewLabel_2);
-		rightPanel.setLayout(gl_rightPanel);
-		frame.getContentPane().add(topPanel, BorderLayout.NORTH);
-		JButton chooseButton = new JButton("Choose Input Text File");
+		JButton btnChoose = new JButton("Choose input text file");
 		
-				chooseButton.addActionListener(new ActionListener() {
-		
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						int returnVal = fileChooser.showOpenDialog(frame);
-		
-						if (returnVal == JFileChooser.APPROVE_OPTION) {
-							filename = fileChooser.getSelectedFile().getPath();
-						}
-					}
-				});
-		JButton loadButton = new JButton("Load");
-						GroupLayout gl_topPanel = new GroupLayout(topPanel);
-						gl_topPanel.setHorizontalGroup(
-							gl_topPanel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_topPanel.createSequentialGroup()
-									.addGap(549)
-									.addComponent(chooseButton)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(loadButton)
-									.addGap(49))
-						);
-						gl_topPanel.setVerticalGroup(
-							gl_topPanel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_topPanel.createSequentialGroup()
-									.addGap(18)
-									.addGroup(gl_topPanel.createParallelGroup(Alignment.BASELINE)
-										.addComponent(chooseButton)
-										.addComponent(loadButton))
-									.addContainerGap(18, Short.MAX_VALUE))
-						);
-						topPanel.setLayout(gl_topPanel);
-		
-				loadButton.addActionListener(new ActionListener() {
-		
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						if(filename != null){
-							listener.onLoad(filename);
-						}
-					}
-				});
-		frame.getContentPane().add(botPanel, BorderLayout.SOUTH);
+		btnChoose.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int returnVal = fileChooser.showOpenDialog(frame);
+
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					filename = fileChooser.getSelectedFile().getPath();
+				}
+				if(filename != null){
+					listener.onLoad(filename);
+				}
+			}
+		});
 		
 		JButton stepButton = new JButton("Step");
 		
@@ -165,6 +117,54 @@ public class GUI {
 						listener.onStep();			
 					}
 				});
+		JButton resetButton = new JButton("Reset");
+		
+				resetButton.addActionListener(new ActionListener() {
+		
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						listener.onReset();	
+					}
+				});
+		GroupLayout gl_rightPanel = new GroupLayout(rightPanel);
+		gl_rightPanel.setHorizontalGroup(
+			gl_rightPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_rightPanel.createSequentialGroup()
+					.addGroup(gl_rightPanel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_rightPanel.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(stepButton)
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(resetButton))
+						.addComponent(registerPane, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_rightPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(dataPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGroup(Alignment.TRAILING, gl_rightPanel.createSequentialGroup()
+							.addGap(73)
+							.addComponent(btnChoose)
+							.addContainerGap())))
+		);
+		gl_rightPanel.setVerticalGroup(
+			gl_rightPanel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_rightPanel.createSequentialGroup()
+					.addGroup(gl_rightPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(registerPane, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE)
+						.addComponent(dataPane, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_rightPanel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnChoose)
+						.addGroup(gl_rightPanel.createParallelGroup(Alignment.BASELINE)
+							.addComponent(resetButton)
+							.addComponent(stepButton)))
+					.addContainerGap(18, Short.MAX_VALUE))
+		);
+		
+		JLabel lblNewLabel_2 = new JLabel("Memory List");
+		lblNewLabel_2.setFont(new Font("Lucida Grande", Font.BOLD, 15));
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		dataPane.setColumnHeaderView(lblNewLabel_2);
+		rightPanel.setLayout(gl_rightPanel);
+		frame.getContentPane().add(botPanel, BorderLayout.SOUTH);
 		JButton runButton = new JButton("Run");
 		
 				runButton.addActionListener(new ActionListener() {		
@@ -182,30 +182,21 @@ public class GUI {
 						listener.onStop();	
 					}
 				});
-		JButton resetButton = new JButton("Reset");
 		
-				resetButton.addActionListener(new ActionListener() {
-		
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						listener.onReset();	
-					}
-				});
+		JButton btnHelp = new JButton("Help");
 		GroupLayout gl_botPanel = new GroupLayout(botPanel);
 		gl_botPanel.setHorizontalGroup(
 			gl_botPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_botPanel.createSequentialGroup()
 					.addGap(55)
 					.addComponent(pcPane, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)
-					.addGap(241)
-					.addComponent(stepButton)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(148)
 					.addComponent(runButton)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(stopButton)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(resetButton)
-					.addContainerGap())
+					.addComponent(stopButton)
+					.addGap(173)
+					.addComponent(btnHelp)
+					.addGap(16))
 		);
 		gl_botPanel.setVerticalGroup(
 			gl_botPanel.createParallelGroup(Alignment.TRAILING)
@@ -213,10 +204,9 @@ public class GUI {
 					.addContainerGap(10, Short.MAX_VALUE)
 					.addGroup(gl_botPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(pcPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(resetButton)
-						.addComponent(stopButton)
 						.addComponent(runButton)
-						.addComponent(stepButton))
+						.addComponent(stopButton)
+						.addComponent(btnHelp))
 					.addContainerGap())
 		);
 		botPanel.setLayout(gl_botPanel);
