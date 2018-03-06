@@ -101,9 +101,9 @@ public class Controller {
 					return;
 				}
 				running = true;
-				while(running && !processor.isDone()) {
-					step();
-				}
+				while(running && !processor.isDone()) 
+					processor.step();
+				
 				refreshLater();
 			};
 		}.start();

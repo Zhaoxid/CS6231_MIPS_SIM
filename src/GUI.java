@@ -167,8 +167,7 @@ public class GUI {
 				});
 		JButton runButton = new JButton("Run");
 		
-				runButton.addActionListener(new ActionListener() {
-		
+				runButton.addActionListener(new ActionListener() {		
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						listener.onRun();
@@ -263,6 +262,6 @@ public class GUI {
 	}
 
 	public void setPc(int pc) {
-		pcPane.setText("Program Counter: 0");
+		pcPane.setText("Program Counter: " + pc);
 	}
 }
