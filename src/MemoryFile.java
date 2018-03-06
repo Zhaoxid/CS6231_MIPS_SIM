@@ -1,6 +1,4 @@
-/**
- * The processor memory.
- */
+//processor memory
 public class MemoryFile extends DataChanges {
 	public MemoryFile() {
 		super(1000);
