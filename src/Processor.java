@@ -10,7 +10,7 @@ public class Processor {
 
 	private ProgramCounter pc;
 
-	private RegisterFile register;
+	private Register register;
 	private MemoryFile memory;
 	private ALU alu;
 
@@ -22,7 +22,7 @@ public class Processor {
 	public Processor() {
 		pc = new ProgramCounter();
 		instructions = new InstructionStorage();
-		register = new RegisterFile();
+		register = new Register();
 		alu = new ALU();
 		memory = new MemoryFile();
 	}
@@ -64,20 +64,20 @@ public class Processor {
 			return;
 		}
 
-		//5 stages of mips simulation
+		//5 Stages
 		
 		//Fetch
 		i = instructions.fetch(pc);
 		Control control = new Control(i);
 
-		//Reg
+		//Decode, set register
 		int writeReg = mux(i.getRt(), i.getRd(), control.isRegDist());
 		register.setRegisters(i.getRs(), i.getRt(), writeReg);
 		regData1 = register.readData1();
 		regData2 = register.readData2();
 
 
-		//Alu
+		//Execute
 		alu.setOperation(
 				ALUControl.getControl(control.isALUOp1(), control.isALUOp0(), i.getFunct()),
 				mux(regData2, i.getImm(), control.isALUsrc()),
@@ -93,7 +93,7 @@ public class Processor {
 		register.write(control.isRegWrite(), write_data);
 
 
-		new_pc += 4;
+		new_pc += 4; //PC+=4
 		branch_pc = new_pc + (i.getImm() << 2);
 		new_pc = mux(new_pc, branch_pc, control.isBranch() && alu_zero);
 		pc.set(new_pc);

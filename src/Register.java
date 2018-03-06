@@ -1,12 +1,10 @@
-/**
- * The processor register file
- */
-public class RegisterFile extends DataChanges {
+//register
+public class Register extends DataChanges {
 	private int rr1;
 	private int rr2;
 	private int wr;
 
-	public RegisterFile() {
+	public Register() {
 		super(32);
 	}
 
@@ -29,7 +27,6 @@ public class RegisterFile extends DataChanges {
 			set(wr, data);
 		}
 	}
-
 
 	@Override
 	protected int get(int index) {

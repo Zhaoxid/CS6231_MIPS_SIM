@@ -57,7 +57,7 @@ public class Controller {
 		
 		for(int index : changedRegisters) {
 			String repr = String.format(
-					"%s: %s", RegisterFile.name(index), string_value(registerData[index]));
+					"%s: %s", Register.name(index), string_value(registerData[index]));
 			registerModel.addElement(repr);
 		}
 

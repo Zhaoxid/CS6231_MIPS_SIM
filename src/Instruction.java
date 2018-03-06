@@ -155,7 +155,7 @@ public class Instruction {
 			default:
 				throw new Exception("Invalid register " + register);
 			}
-			assert register.equals(RegisterFile.name(number));
+			assert register.equals(Register.name(number));
 			return number;
 		}
 

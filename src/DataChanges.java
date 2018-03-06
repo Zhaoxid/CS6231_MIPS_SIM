@@ -13,9 +13,9 @@ public abstract class DataChanges {
 
 	public void reset() {
 		changedFields = new ArrayList<Integer>();
-		for(int i = 0; i < data.length; i++) {
+		
+		for(int i = 0; i < data.length; i++) 
 			data[i] = 0;
-		}
 	}
 
 	protected int get(int index) {
@@ -28,9 +28,8 @@ public abstract class DataChanges {
 	}
 
 	private void touch(int index) {
-		if(changedFields.contains(index)) {
+		if(changedFields.contains(index)) 
 			changedFields.remove(changedFields.indexOf(index));
-		}
 		changedFields.add(0, index);
 	}
 
