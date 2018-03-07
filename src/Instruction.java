@@ -22,7 +22,6 @@ public class Instruction {
 		String op = "", t1 = "", t2 = "", t3 = "";
 
 		op = tokens.nextToken();
-
 		try {
 			t1 = tokens.nextToken();
 			t2 = tokens.nextToken();
