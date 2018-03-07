@@ -76,12 +76,12 @@ public class GUI {
 		gl_leftPanel.setHorizontalGroup(
 			gl_leftPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_leftPanel.createSequentialGroup()
-					.addComponent(instructionPane, GroupLayout.PREFERRED_SIZE, 305, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(14, Short.MAX_VALUE))
+					.addComponent(instructionPane, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(75, Short.MAX_VALUE))
 		);
 		gl_leftPanel.setVerticalGroup(
 			gl_leftPanel.createParallelGroup(Alignment.LEADING)
-				.addComponent(instructionPane, GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+				.addComponent(instructionPane, GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
 		);
 		
 		JLabel lblNewLabel_1 = new JLabel("Instruction List");
@@ -134,29 +134,30 @@ public class GUI {
 						.addGroup(gl_rightPanel.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(stepButton)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(resetButton))
-						.addComponent(registerPane, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGroup(Alignment.LEADING, gl_rightPanel.createSequentialGroup()
+							.addGap(17)
+							.addComponent(registerPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addGroup(gl_rightPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(dataPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(dataPane, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(Alignment.TRAILING, gl_rightPanel.createSequentialGroup()
-							.addGap(73)
 							.addComponent(btnChoose)
 							.addContainerGap())))
 		);
 		gl_rightPanel.setVerticalGroup(
 			gl_rightPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_rightPanel.createSequentialGroup()
-					.addGroup(gl_rightPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(registerPane, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE)
-						.addComponent(dataPane, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_rightPanel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(dataPane, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE)
+						.addComponent(registerPane, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
-					.addGroup(gl_rightPanel.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_rightPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnChoose)
-						.addGroup(gl_rightPanel.createParallelGroup(Alignment.BASELINE)
-							.addComponent(resetButton)
-							.addComponent(stepButton)))
-					.addContainerGap(18, Short.MAX_VALUE))
+						.addComponent(resetButton)
+						.addComponent(stepButton))
+					.addContainerGap(25, Short.MAX_VALUE))
 		);
 		
 		JLabel lblNewLabel_2 = new JLabel("Memory List");
@@ -188,29 +189,29 @@ public class GUI {
 		gl_botPanel.setHorizontalGroup(
 			gl_botPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_botPanel.createSequentialGroup()
-					.addGap(55)
+					.addGap(15)
 					.addComponent(pcPane, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)
-					.addGap(148)
+					.addGap(119)
 					.addComponent(runButton)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(stopButton)
-					.addGap(173)
+					.addGap(175)
 					.addComponent(btnHelp)
-					.addGap(16))
+					.addGap(63))
 		);
 		gl_botPanel.setVerticalGroup(
 			gl_botPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_botPanel.createSequentialGroup()
 					.addContainerGap(10, Short.MAX_VALUE)
 					.addGroup(gl_botPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(pcPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnHelp)
 						.addComponent(runButton)
 						.addComponent(stopButton)
-						.addComponent(btnHelp))
+						.addComponent(pcPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
 		botPanel.setLayout(gl_botPanel);
-		frame.setSize(839, 486);
+		frame.setSize(768, 493);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 
