@@ -29,7 +29,7 @@ public class Processor {
 
 	/**
 	 * Feeds instructions into the processor
-	 * Also resets the processor
+	 * Also resets the procsessor
 	 * @param instructions
 	 */
 	public void setInstructionSet(List<Instruction> instructions) {
@@ -75,14 +75,11 @@ public class Processor {
 		register.setRegisters(i.getRs(), i.getRt(), writeReg);
 		regData1 = register.readData1();
 		regData2 = register.readData2();
-
-
+		
 		//Execute
-		alu.setOperation(
-				ALUControl.getControl(control.isALUOp1(), control.isALUOp0(), i.getFunct()),
-				mux(regData2, i.getImm(), control.isALUsrc()),
-				regData1);
-		alu_out = alu.getOut();
+		alu.setOperation(ALUControl.getControl(control.isALUOp1(), control.isALUOp0(), i.getFunct()),
+						 mux(regData2, i.getImm(), control.isALUsrc()), regData1);
+		alu_out = alu.getOut();	
 		alu_zero = alu.isZero();
 
 		//Mem

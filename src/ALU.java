@@ -8,19 +8,15 @@ public class ALU {
 	public static final short NOR = 12;
 	
 	private int out;
-
+	private boolean zero;
+	
 	public int getOut() {
 		return out;
 	}
 
-	/**
-	  @return the zero line control
-	 */
 	public boolean isZero() {
 		return zero;
 	}
-
-	private boolean zero;
 
 	public void setOperation(short control, int srcv, int rsv) {
 		zero = false;

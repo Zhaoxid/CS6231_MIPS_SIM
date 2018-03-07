@@ -1,7 +1,4 @@
-/**
- * The mips control module, exhibits or inhibits processor modules 
- * depending on the instruction.
- */
+//mips control module
 public class Control {
 
 	private boolean RegDist;
