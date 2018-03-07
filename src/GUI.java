@@ -19,6 +19,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
 
 /**
  * A gui for displaying instructions, register values and memory values
@@ -33,8 +34,7 @@ public class GUI {
 	private JList registerList;
 	private JList memoryList;
 	private JTextField pcPane;
-	private JTextField textField;
-
+	private JTextArea infoPane;
 
 	public GUI() {
 		Font font = new Font("Arial", Font.PLAIN, 13);
@@ -136,12 +136,8 @@ public class GUI {
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 		dataPane.setColumnHeaderView(lblNewLabel_2);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		
-		
-		
-		
+		infoPane = new JTextArea();
+		infoPane.setEditable(false);
 		
 		GroupLayout gl_rightPanel = new GroupLayout(rightPanel);
 		gl_rightPanel.setHorizontalGroup(
@@ -149,7 +145,7 @@ public class GUI {
 				.addGroup(gl_rightPanel.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_rightPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(textField, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+						.addComponent(infoPane, GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
 						.addGroup(gl_rightPanel.createSequentialGroup()
 							.addGroup(gl_rightPanel.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_rightPanel.createSequentialGroup()
@@ -160,11 +156,11 @@ public class GUI {
 							.addGroup(gl_rightPanel.createParallelGroup(Alignment.TRAILING)
 								.addGroup(gl_rightPanel.createSequentialGroup()
 									.addGap(10)
-									.addComponent(dataPane, GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+									.addComponent(dataPane, GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE))
 								.addGroup(gl_rightPanel.createSequentialGroup()
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnChoose)))
-							.addContainerGap())))
+									.addComponent(btnChoose)))))
+					.addContainerGap())
 		);
 		gl_rightPanel.setVerticalGroup(
 			gl_rightPanel.createParallelGroup(Alignment.LEADING)
@@ -172,9 +168,9 @@ public class GUI {
 					.addGroup(gl_rightPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(registerPane, GroupLayout.PREFERRED_SIZE, 225, GroupLayout.PREFERRED_SIZE)
 						.addComponent(dataPane, GroupLayout.PREFERRED_SIZE, 225, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(18)
+					.addComponent(infoPane, GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+					.addGap(18)
 					.addGroup(gl_rightPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(stepButton)
 						.addComponent(resetButton)
@@ -239,6 +235,7 @@ public class GUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 
+		setInfo();
 		setPc(0);
 	}
 
@@ -278,5 +275,11 @@ public class GUI {
 
 	public void setPc(int pc) {
 		pcPane.setText("Program Counter: " + pc);
+	}
+	
+	public void setInfo() {
+		infoPane.insert("Forwarding: Enabled \n" + 
+						"Stalls: 0 \n" + 
+						"Hazards: 0 \n", 0);
 	}
 }
