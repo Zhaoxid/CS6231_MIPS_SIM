@@ -18,6 +18,7 @@ import java.awt.Color;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JRadioButton;
 
 /**
  * A gui for displaying instructions, register values and memory values
@@ -32,6 +33,7 @@ public class GUI {
 	private JList registerList;
 	private JList memoryList;
 	private JTextField pcPane;
+	private JTextField textField;
 
 
 	public GUI() {
@@ -45,8 +47,10 @@ public class GUI {
 		JPanel leftPanel = new JPanel();
 
 		registerList = new JList();
+		registerList.setValueIsAdjusting(true);
 		registerList.setFont(font);
 		memoryList = new JList();
+		memoryList.setValueIsAdjusting(true);
 		memoryList.setFont(font);
 		
 		JScrollPane registerPane = new JScrollPane(registerList);
@@ -71,17 +75,17 @@ public class GUI {
 
 
 		frame = new JFrame("MIPS Simulator - Team 2");
-		frame.getContentPane().add(leftPanel, BorderLayout.CENTER);
+		frame.getContentPane().add(leftPanel, BorderLayout.WEST);
 		GroupLayout gl_leftPanel = new GroupLayout(leftPanel);
 		gl_leftPanel.setHorizontalGroup(
 			gl_leftPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_leftPanel.createSequentialGroup()
-					.addComponent(instructionPane, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(75, Short.MAX_VALUE))
+					.addComponent(instructionPane, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		gl_leftPanel.setVerticalGroup(
 			gl_leftPanel.createParallelGroup(Alignment.LEADING)
-				.addComponent(instructionPane, GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
+				.addComponent(instructionPane, GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
 		);
 		
 		JLabel lblNewLabel_1 = new JLabel("Instruction List");
@@ -89,9 +93,9 @@ public class GUI {
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		instructionPane.setColumnHeaderView(lblNewLabel_1);
 		leftPanel.setLayout(gl_leftPanel);
-		frame.getContentPane().add(rightPanel, BorderLayout.EAST);
+		frame.getContentPane().add(rightPanel, BorderLayout.CENTER);
 		
-		JButton btnChoose = new JButton("Choose input text file");
+		JButton btnChoose = new JButton("Choose input file");
 		
 		btnChoose.addActionListener(new ActionListener() {
 
@@ -126,44 +130,59 @@ public class GUI {
 						listener.onReset();	
 					}
 				});
+		
+		JLabel lblNewLabel_2 = new JLabel("Memory List");
+		lblNewLabel_2.setFont(new Font("Lucida Grande", Font.BOLD, 15));
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
+		dataPane.setColumnHeaderView(lblNewLabel_2);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		
+		
+		
+		
+		
 		GroupLayout gl_rightPanel = new GroupLayout(rightPanel);
 		gl_rightPanel.setHorizontalGroup(
 			gl_rightPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_rightPanel.createSequentialGroup()
-					.addGroup(gl_rightPanel.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_rightPanel.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(stepButton)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(resetButton))
-						.addGroup(Alignment.LEADING, gl_rightPanel.createSequentialGroup()
-							.addGap(17)
-							.addComponent(registerPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addContainerGap()
 					.addGroup(gl_rightPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(dataPane, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(Alignment.TRAILING, gl_rightPanel.createSequentialGroup()
-							.addComponent(btnChoose)
+						.addComponent(textField, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+						.addGroup(gl_rightPanel.createSequentialGroup()
+							.addGroup(gl_rightPanel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_rightPanel.createSequentialGroup()
+									.addComponent(stepButton)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(resetButton))
+								.addComponent(registerPane, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_rightPanel.createParallelGroup(Alignment.TRAILING)
+								.addGroup(gl_rightPanel.createSequentialGroup()
+									.addGap(10)
+									.addComponent(dataPane, GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+								.addGroup(gl_rightPanel.createSequentialGroup()
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnChoose)))
 							.addContainerGap())))
 		);
 		gl_rightPanel.setVerticalGroup(
 			gl_rightPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_rightPanel.createSequentialGroup()
 					.addGroup(gl_rightPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(dataPane, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE)
-						.addComponent(registerPane, GroupLayout.PREFERRED_SIZE, 354, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
+						.addComponent(registerPane, GroupLayout.PREFERRED_SIZE, 225, GroupLayout.PREFERRED_SIZE)
+						.addComponent(dataPane, GroupLayout.PREFERRED_SIZE, 225, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+					.addComponent(textField, GroupLayout.PREFERRED_SIZE, 167, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_rightPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnChoose)
+						.addComponent(stepButton)
 						.addComponent(resetButton)
-						.addComponent(stepButton))
-					.addContainerGap(25, Short.MAX_VALUE))
+						.addComponent(btnChoose))
+					.addGap(16))
 		);
-		
-		JLabel lblNewLabel_2 = new JLabel("Memory List");
-		lblNewLabel_2.setFont(new Font("Lucida Grande", Font.BOLD, 15));
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		dataPane.setColumnHeaderView(lblNewLabel_2);
+		gl_rightPanel.setAutoCreateContainerGaps(true);
+		gl_rightPanel.setAutoCreateGaps(true);
 		rightPanel.setLayout(gl_rightPanel);
 		frame.getContentPane().add(botPanel, BorderLayout.SOUTH);
 		JButton runButton = new JButton("Run");
@@ -185,33 +204,38 @@ public class GUI {
 				});
 		
 		JButton btnHelp = new JButton("Help");
+		
+		JRadioButton rdbtnForwarding = new JRadioButton("forwarding");
 		GroupLayout gl_botPanel = new GroupLayout(botPanel);
 		gl_botPanel.setHorizontalGroup(
 			gl_botPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_botPanel.createSequentialGroup()
 					.addGap(15)
 					.addComponent(pcPane, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)
-					.addGap(119)
+					.addGap(69)
 					.addComponent(runButton)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(stopButton)
-					.addGap(175)
+					.addGap(17)
+					.addComponent(rdbtnForwarding)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnHelp)
-					.addGap(63))
+					.addGap(46))
 		);
 		gl_botPanel.setVerticalGroup(
 			gl_botPanel.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_botPanel.createSequentialGroup()
 					.addContainerGap(10, Short.MAX_VALUE)
 					.addGroup(gl_botPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnHelp)
+						.addComponent(pcPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(runButton)
 						.addComponent(stopButton)
-						.addComponent(pcPane, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(rdbtnForwarding)
+						.addComponent(btnHelp))
 					.addContainerGap())
 		);
 		botPanel.setLayout(gl_botPanel);
-		frame.setSize(768, 493);
+		frame.setSize(658, 535);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 
