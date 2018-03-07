@@ -1,11 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * This class weaves together all the modules of the mips processor
- * with muxes, provides a way to step through a set of instructions, 
- * and allows the state of the register and memory to be retrieved.
- */
 public class Processor {
 
 	private ProgramCounter pc;
@@ -16,9 +11,6 @@ public class Processor {
 
 	private InstructionStorage instructions;
 
-	/**
-	 * Creates a new processor with a zeroes register and memory
-	 */
 	public Processor() {
 		pc = new ProgramCounter();
 		instructions = new InstructionStorage();
