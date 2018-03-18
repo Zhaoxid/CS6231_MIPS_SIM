@@ -6,6 +6,7 @@ public class ALUControl {
 		if(ALUOp0) {
 			return ALU.SUBTRACT;
 		}
+		
 		switch(funct & 15) {
 		case 0:
 			return ALU.ADD;

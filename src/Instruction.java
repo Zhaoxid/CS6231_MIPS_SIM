@@ -20,7 +20,7 @@ public class Instruction {
 		line = line.replaceAll(",", "");
 		StringTokenizer tokens = new StringTokenizer(line, " ");
 		String op = "", t1 = "", t2 = "", t3 = "";
-
+		
 		op = tokens.nextToken();
 		try {
 			t1 = tokens.nextToken();
@@ -29,29 +29,45 @@ public class Instruction {
 		} catch(NoSuchElementException e) {}
 
 		if(op.equalsIgnoreCase("add")) {
-			r_type_opcode = 0x20;
+			r_type_opcode = 32;
 			r_type = true;
 		} else if(op.equalsIgnoreCase("sub")) {
-			r_type_opcode = 0x22;
+			r_type_opcode = 34;
 			r_type = true;
 		} else if(op.equalsIgnoreCase("and")) {
-			r_type_opcode = 0x24;
+			r_type_opcode = 36;
 			r_type = true;
 		} else if(op.equalsIgnoreCase("or")) {
-			r_type_opcode = 0x25;
+			r_type_opcode = 37;
 			r_type = true;
 		} else if(op.equalsIgnoreCase("nor")) {
-			r_type_opcode = 0x27;
+			r_type_opcode = 39;
 			r_type = true;
 		} else if(op.equalsIgnoreCase("slt")) {
-			r_type_opcode = 0x2a;
+			r_type_opcode = 42;
 			r_type = true;
-		}
+		} 
+		
+		//i type
+		else if(op.equalsIgnoreCase("addi")) {
+			opcode = 32;
+			i_type = true;
+		} else if(op.equalsIgnoreCase("andi")) {
+			opcode = 36;
+			i_type = true;
+		} else if(op.equalsIgnoreCase("subi")) {
+			opcode = 34;
+			i_type = true;
+		} else if(op.equalsIgnoreCase("xori")) {
+			opcode = 38;
+			i_type = true;
+		} 
 
+		//load and store
 		else if(op.equalsIgnoreCase("lw")) {
-			opcode = 0x23;
+			opcode = 35;
 		} else if(op.equalsIgnoreCase("sw")) {
-			opcode = 0x2b;
+			opcode = 43;
 		}
 
 		else if(op.equalsIgnoreCase("beq")) {
@@ -68,7 +84,7 @@ public class Instruction {
 
 
 		// Parse additional parameters
-		if(opcode == 0x23 || opcode == 0x2b) {
+		if(opcode == 35 || opcode == 43) {
 			rt = parseReg(t1);
 			if(t2.indexOf('(') != -1) {
 				rs = parseWrappedReg(t2);
@@ -81,7 +97,10 @@ public class Instruction {
 			rd = parseReg(t1);
 			rs = parseReg(t2);
 			rt = parseReg(t3);
-
+		} else if(i_type) {
+			rs = parseReg(t1);
+			rt = parseReg(t2);
+			imm = parseReg(t3);
 		} else if(opcode == 4) {
 			rs = parseReg(t1);
 			rt = parseReg(t2);
@@ -112,16 +131,12 @@ public class Instruction {
 		return Short.parseShort(address);
 	}
 
-	/**
-	 * Parse a string representation of a mips register into a register number
-	 * @param register the string representation, such as "$t0" or "0x3" or "0"
-	 * @return the register number
-	 * @throws Exception if the string representation could not be parsed
-	 */
 	private short parseReg(String register) throws Exception {
 		if(register.charAt(0) == '$') {
 			if(register.equalsIgnoreCase("$zero")) {
 				return 0;
+			}if(register.equalsIgnoreCase("$one")) {
+				return 1;
 			} else if(register.equalsIgnoreCase("$gp")) {
 				return 28;
 			} else if(register.equalsIgnoreCase("$sp")) {
@@ -141,7 +156,7 @@ public class Instruction {
 			case 'a':
 				number += 4;
 				break;
-			case 't':
+			case 'r':
 				number += 8;
 				if(number >= 16) {
 					number += 8;
@@ -201,11 +216,13 @@ public class Instruction {
 		return r_type;
 	}
 
+	public boolean is_i_type() {
+		return i_type;
+	}
 
 	public boolean isExit() {
 		return is_exit;
 	}
-
 
 	public boolean isNop() {
 		return is_nop;
@@ -219,7 +236,6 @@ public class Instruction {
 	public String representation(boolean hex) {
 		if(r_type) 
 			return String.format("%-22s", instruct);
-		else return String.format("%-22s (OP:%d, RS:%d, RT:%d, IMM:%d)", 
-					instruct, opcode, rs, rt, imm);
+		else return String.format("%-22s (IMM:%d)", instruct, imm);
 	}
 }

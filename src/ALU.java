@@ -39,7 +39,7 @@ public class ALU {
 			out = rsv | srcv;
 			break;
 		case NOR:
-			out = ~(rsv | srcv);
+			out = ~ (rsv | srcv);
 			break;
 		case SLT:
 			out = rsv < srcv ? 1 : 0;

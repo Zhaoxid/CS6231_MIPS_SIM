@@ -21,10 +21,6 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 
-/**
- * A gui for displaying instructions, register values and memory values
- * as well as providing means to load instructions and advance the simulation
- */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class GUI {
 	private JFrame frame;
@@ -280,6 +276,7 @@ public class GUI {
 	public void setInfo() {
 		infoPane.insert("Forwarding: Enabled \n" + 
 						"Stalls: 0 \n" + 
-						"Hazards: 0 \n", 0);
+						"Hazards: 0 \n" +
+						"These features haven't been implemented yet.\n", 0);
 	}
 }

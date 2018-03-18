@@ -1,21 +1,19 @@
-nor $t1, $zero, $zero
-add $t2, $t1, $t1
-sub $t3, $t1, $t2
-add $t1, $t3, $zero
+nor $r1, $zero, $zero
+add $r2, $r1, $r1
+sub $r3, $r1, $r2
+add $r1, $r3, $zero
+add $r2, $r1, $r0
+add $r3, $r2, $r1
+add $r4, $r3, $r2
+add $r5, $r4, $r3
+add $r6, $r5, $r4
+add $r7, $r6, $r5
 
-add $t2, $t1, $t0
-add $t3, $t2, $t1
-add $t4, $t3, $t2
-add $t5, $t4, $t3
-add $t6, $t5, $t4
-add $t7, $t6, $t5
+sw $r7, 2($r4)
+beq $r1, $r5, -3
 
-sw $t7, 2($t4)
+add $r5, $r4, $r3
+add $r6, $r5, $r4
+add $r7, $r6, $r5
 
-beq $t1, $t5, -3
-
-add $t5, $t4, $t3
-add $t6, $t5, $t4
-add $t7, $t6, $t5
-
-beq $t1, $t1, -4
+beq $r1, $r1, -4

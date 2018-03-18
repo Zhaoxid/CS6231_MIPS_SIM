@@ -19,28 +19,17 @@ public class Processor {
 		memory = new MemoryFile();
 	}
 
-	/**
-	 * Feeds instructions into the processor
-	 * Also resets the procsessor
-	 * @param instructions
-	 */
 	public void setInstructionSet(List<Instruction> instructions) {
 		this.instructions.load(new ArrayList<Instruction>(instructions));
 		reset();
 	}
 
-	/**
-	 * Resets all registers and memory locations to 0, and the pc to 0
-	 */
 	public void reset() {
 		pc.reset();
 		register.reset();
 		memory.reset();
 	}
 
-	/**
-	 * Steps through the iteration. Does nothing when the simulation has ended
-	 */
 	public void step() {
 		Instruction i;
 		int alu_out = 0;
@@ -71,6 +60,7 @@ public class Processor {
 		//Execute
 		alu.setOperation(ALUControl.getControl(control.isALUOp1(), control.isALUOp0(), i.getFunct()),
 						 mux(regData2, i.getImm(), control.isALUsrc()), regData1);
+		
 		alu_out = alu.getOut();	
 		alu_zero = alu.isZero();
 

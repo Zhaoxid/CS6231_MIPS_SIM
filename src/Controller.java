@@ -87,9 +87,6 @@ public class Controller {
 		});
 	}
 
-	/**
-	 * Run the simulation until it ends or the user stops
-	 */
 	private void run() {
 		if(running) {
 			return;
@@ -109,23 +106,14 @@ public class Controller {
 		}.start();
 	}
 
-	/**
-	 * Stop automatic running
-	 */
 	private void stop() {
 		running = false;
 	}
 
-	/**
-	 * Step the simulation, effectively moving the simulation forward
-	 */
 	private synchronized void step() {
 		processor.step();
 	}
 
-	/**
-	 * Reset the simulation to initial state
-	 */
 	private void reset() {
 		stop();
 		step(); //Block until running stops
@@ -140,10 +128,6 @@ public class Controller {
 		}
 	}
 
-	/**
-	 * Load mips assembly instructions from a file and feed them into the processor
-	 * @param filename where to parse the instructions from
-	 */
 	private void load(String filename) {
 		String line;
 		BufferedReader reader = null;

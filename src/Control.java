@@ -19,15 +19,21 @@ public class Control {
 			RegWrite = true;
 			ALUOp1 = true;
 		}
-
-		else if(opcode == 0x23) {
+		
+		else if(instruction.is_i_type()) {
+			RegWrite = true;
+			ALUOp1 = true;
+			ALUsrc = true;
+		}
+		
+		else if(opcode == 35) {
 			MemRead = true;
 			MemtoReg = true;
 			RegWrite = true;
 			ALUsrc = true;
 		}
 
-		else if(opcode == 0x2b) {
+		else if(opcode == 43) {
 			MemWrite = true;
 			ALUsrc = true;
 		}
