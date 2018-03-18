@@ -1,5 +1,5 @@
 nor $r1, $zero, $zero
-addi $r2, $r1, 1
+addi $r2, $r1, 10
 div $r3, $r2, $r1
 mult $r3, $r2, $r1
 addi $r1, $r3, 0

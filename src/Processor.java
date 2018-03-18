@@ -6,7 +6,7 @@ public class Processor {
 	private ProgramCounter pc;
 
 	private Register register;
-	private MemoryFile memory;
+	private Memory memory;
 	private ALU alu;
 
 	private InstructionStorage instructions;
@@ -16,7 +16,7 @@ public class Processor {
 		instructions = new InstructionStorage();
 		register = new Register();
 		alu = new ALU();
-		memory = new MemoryFile();
+		memory = new Memory();
 	}
 
 	public void setInstructionSet(List<Instruction> instructions) {

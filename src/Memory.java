@@ -1,6 +1,6 @@
 //processor memory
-public class MemoryFile extends DataChanges {
-	public MemoryFile() {
+public class Memory extends DataChanges {
+	public Memory() {
 		super(1000);
 	}
 

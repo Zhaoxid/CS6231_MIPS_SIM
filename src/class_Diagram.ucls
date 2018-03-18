@@ -10,7 +10,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="MemoryFile" project="mips_sim" file="/mips_sim/src/MemoryFile.java" binary="false" 
+  <class id="2" language="java" name="Memory" project="mips_sim" file="/mips_sim/src/Memory.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1009" y="219"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
