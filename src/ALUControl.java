@@ -1,5 +1,5 @@
 public class ALUControl {
-	public static short getControl(boolean ALUOp1, boolean ALUOp0, short funct){
+	public static short getControl(boolean ALUOp1, boolean ALUOp0, short rOp){
 		if(!ALUOp1 && !ALUOp0) {
 			return ALU.ADD;
 		}
@@ -7,7 +7,7 @@ public class ALUControl {
 			return ALU.SUBTRACT;
 		}
 		
-		switch(funct & 31) {
+		switch(rOp & 31) {
 		case 0:
 			return ALU.ADD;
 		case 2:

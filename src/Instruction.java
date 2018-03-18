@@ -193,7 +193,7 @@ public class Instruction {
 	}
 
 
-	public short getFunct() {
+	public short getrOp() {
 		return r_type_opcode;
 	}
 

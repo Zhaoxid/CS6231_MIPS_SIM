@@ -32,7 +32,10 @@ public class ALU {
 			out =  rsv * srcv;
 			break;
 		case DIV:
-			out =  rsv / srcv;
+			if (srcv == 0) {
+				out = 0;
+			}
+			else out =  rsv / srcv;
 			break;
 		case SUBTRACT:
 			out = rsv - srcv;

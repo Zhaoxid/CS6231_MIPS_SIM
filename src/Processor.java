@@ -58,7 +58,7 @@ public class Processor {
 		regData2 = register.readData2();
 		
 		//Execute
-		alu.setOperation(ALUControl.getControl(control.isALUOp1(), control.isALUOp0(), i.getFunct()),
+		alu.setOperation(ALUControl.getControl(control.isOp1(), control.isOp0(), i.getrOp()),
 						 mux(regData2, i.getImm(), control.isALUsrc()), regData1);
 		
 		alu_out = alu.getOut();	

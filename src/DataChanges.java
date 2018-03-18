@@ -11,6 +11,10 @@ public abstract class DataChanges {
 		reset();
 	}
 
+	protected int get(int index) {
+		return data[index];
+	}
+
 	public void reset() {
 		changedFields = new ArrayList<Integer>();
 		
@@ -18,13 +22,13 @@ public abstract class DataChanges {
 			data[i] = 0;
 	}
 
-	protected int get(int index) {
-		return data[index];
-	}
-
 	protected void set(int index, int value) {
 		touch(index);
 		data[index] = value;
+	}
+
+	public int[] getRawData() {
+		return data.clone();
 	}
 
 	private void touch(int index) {
@@ -32,11 +36,7 @@ public abstract class DataChanges {
 			changedFields.remove(changedFields.indexOf(index));
 		changedFields.add(0, index);
 	}
-
-	public int[] getRawData() {
-		return data.clone();
-	}
-
+	
 	public List<Integer> getChangedIndices() {
 		return new ArrayList<Integer>(changedFields);
 	}
