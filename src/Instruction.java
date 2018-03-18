@@ -31,7 +31,13 @@ public class Instruction {
 		if(op.equalsIgnoreCase("add")) {
 			r_type_opcode = 32;
 			r_type = true;
-		} else if(op.equalsIgnoreCase("sub")) {
+		} else if(op.equalsIgnoreCase("mult")) {
+			r_type_opcode = 24;
+			r_type = true;
+		} else if(op.equalsIgnoreCase("div")) {
+			r_type_opcode = 26;
+			r_type = true;
+		}else if(op.equalsIgnoreCase("sub")) {
 			r_type_opcode = 34;
 			r_type = true;
 		} else if(op.equalsIgnoreCase("and")) {

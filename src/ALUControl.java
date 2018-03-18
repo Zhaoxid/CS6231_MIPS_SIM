@@ -7,7 +7,7 @@ public class ALUControl {
 			return ALU.SUBTRACT;
 		}
 		
-		switch(funct & 15) {
+		switch(funct & 31) {
 		case 0:
 			return ALU.ADD;
 		case 2:
@@ -20,6 +20,10 @@ public class ALUControl {
 			return ALU.NOR;
 		case 10:
 			return ALU.SLT;
+		case 24:
+			return ALU.MULT;
+		case 26:
+			return ALU.DIV;
 		}
 
 		assert false;

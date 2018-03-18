@@ -6,6 +6,8 @@ public class ALU {
 	public static final short SUBTRACT = 6;
 	public static final short SLT = 7;
 	public static final short NOR = 12;
+	public static final short MULT = 24;
+	public static final short DIV = 26;
 	
 	private int out;
 	private boolean zero;
@@ -25,6 +27,12 @@ public class ALU {
 		switch(control) {
 		case ADD:
 			out =  rsv + srcv;
+			break;
+		case MULT:
+			out =  rsv * srcv;
+			break;
+		case DIV:
+			out =  rsv / srcv;
 			break;
 		case SUBTRACT:
 			out = rsv - srcv;
