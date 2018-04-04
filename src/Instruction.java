@@ -91,39 +91,39 @@ public class Instruction {
 
 		// Parse additional parameters
 		if(opcode == 35 || opcode == 43) {
-			rt = parseReg(t1);
+			rt = parseReg2(t1);
 			if(t2.indexOf('(') != -1) {
-				rs = parseWrappedReg(t2);
-				imm = parseWrappedOffset(t2);
+				rs = parseReg1(t2);
+				imm = parseOffset(t2);
 			} else {
-				rs = parseReg(t2);
+				rs = parseReg2(t2);
 				imm = 0;
 			}
 		} else if(r_type) {
-			rd = parseReg(t1);
-			rs = parseReg(t2);
-			rt = parseReg(t3);
+			rd = parseReg2(t1);
+			rs = parseReg2(t2);
+			rt = parseReg2(t3);
 		} else if(i_type) {
-			rs = parseReg(t1);
-			rt = parseReg(t2);
-			imm = parseReg(t3);
+			rs = parseReg2(t1);
+			rt = parseReg2(t2);
+			imm = parseReg2(t3);
 		} else if(opcode == 4) {
-			rs = parseReg(t1);
-			rt = parseReg(t2);
+			rs = parseReg2(t1);
+			rt = parseReg2(t2);
 			imm = parseAddr(t3);
 		}
 
 	}
 
 
-	private short parseWrappedOffset(String token) {
+	private short parseOffset(String token) {
 		return parseAddr(token.substring(0, token.indexOf('(')));
 	}
 
 
-	private short parseWrappedReg(String token) {
+	private short parseReg1(String token) {
 		try {
-			return parseReg(token.substring(token.indexOf('(')+1, token.indexOf(')')));
+			return parseReg2(token.substring(token.indexOf('(')+1, token.indexOf(')')));
 		} catch (Exception e) {
 			return 0;
 		}
@@ -137,7 +137,7 @@ public class Instruction {
 		return Short.parseShort(address);
 	}
 
-	private short parseReg(String register) throws Exception {
+	private short parseReg2(String register) throws Exception {
 		if(register.charAt(0) == '$') {
 			if(register.equalsIgnoreCase("$zero")) {
 				return 0;

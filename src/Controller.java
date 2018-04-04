@@ -19,7 +19,6 @@ public class Controller {
 	private DefaultListModel memoryModel;
 
 	private volatile boolean running = false;
-	private boolean hexadecimal = false;
 
 	public Controller() {
 		gui = new GUI();
@@ -39,7 +38,7 @@ public class Controller {
 
 @SuppressWarnings("unchecked")
 	private void refresh() {
-		int pc = processor.getPcValue();
+		int pc = processor.getPC();
 		gui.setPc(pc);
 
 		int instructionIndex = pc / 4;
@@ -52,8 +51,8 @@ public class Controller {
 		registerModel.clear();
 		memoryModel.clear();
 
-		int[] registerData = processor.getRegisters();
-		List<Integer> changedRegisters = processor.getChangedRegisters();
+		int[] registerData = processor.getReg();
+		List<Integer> changedRegisters = processor.getChangedReg();
 		
 		for(int index : changedRegisters) {
 			String repr = String.format(
@@ -61,7 +60,7 @@ public class Controller {
 			registerModel.addElement(repr);
 		}
 
-		int[] memoryData = processor.getMemory();
+		int[] memoryData = processor.getMem();
 		List<Integer> changedMemory = processor.getChangedMemory();
 		for(int index : changedMemory) {
 			String repr = String.format(
@@ -71,11 +70,7 @@ public class Controller {
 	}
 
 	private String string_value(int b) {
-		if(hexadecimal) {
-			return String.format("0x%x", b & 0xffffffffL);
-		} else {
 			return String.format("%d", b & 0xffffffffL);
-		}
 	}
 
 	private void refreshLater() {
@@ -125,7 +120,7 @@ public class Controller {
 	private void renderInstructions() {
 		instructionModel.clear();
 		for(Instruction i : instructions) {
-			instructionModel.addElement(i.representation(hexadecimal));
+			instructionModel.addElement(i.representation(false));
 		}
 	}
 
@@ -196,19 +191,6 @@ public class Controller {
 			load(filename);
 		}
 
-		@Override
-		public void onHex() {
-			hexadecimal = true;
-			renderInstructions();
-			refresh();
-		}
-
-		@Override
-		public void onDec() {
-			hexadecimal = false;
-			renderInstructions();
-			refresh();
-		}
 	};
 
 	public static void main(String[] args) {

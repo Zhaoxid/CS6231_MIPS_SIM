@@ -257,8 +257,6 @@ public class GUI {
 		public void onRun();
 		public void onStop();
 		public void onReset();
-		public void onHex();
-		public void onDec();
 	}
 
 	public void selectInstruction(int index) {

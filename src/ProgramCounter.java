@@ -1,19 +1,19 @@
 public class ProgramCounter {
-	private int value;
+	private int pc;
 	public ProgramCounter() {
-		value = 0;
+		pc = 0;
 	}
 
 	public void set(int value) {
 		assert value % 4 == 0;
-		this.value = value;
+		this.pc = value;
 	}
 
 	public int get() {
-		return value;
+		return pc;
 	}
 
 	public void reset() {
-		value = 0;
+		pc = 0;
 	}
 }

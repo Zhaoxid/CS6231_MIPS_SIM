@@ -23,7 +23,7 @@ public abstract class DataChanges {
 	}
 
 	protected void set(int index, int value) {
-		touch(index);
+		removeDups(index);
 		data[index] = value;
 	}
 
@@ -31,13 +31,13 @@ public abstract class DataChanges {
 		return data.clone();
 	}
 
-	private void touch(int index) {
+	private void removeDups(int index) {
 		if(changedFields.contains(index)) 
 			changedFields.remove(changedFields.indexOf(index));
 		changedFields.add(0, index);
 	}
 	
-	public List<Integer> getChangedIndices() {
+	public List<Integer> getChangedIndex() {
 		return new ArrayList<Integer>(changedFields);
 	}
 

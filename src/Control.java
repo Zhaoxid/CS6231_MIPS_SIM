@@ -1,40 +1,40 @@
 //mips control module
 public class Control {
 
-	private boolean RegDist;
+	private boolean rDist;
 	private boolean Branch;
-	private boolean MemRead;
-	private boolean MemtoReg;
+	private boolean mRead;
+	private boolean MtoR;
 	private boolean op1;
 	private boolean op0;
-	private boolean MemWrite;
+	private boolean mWrite;
 	private boolean ALUsrc;
-	private boolean RegWrite;
+	private boolean rWrite;
 
 	public Control(Instruction instruction) {
 		short opcode = instruction.getOpcode();
 
 		if(instruction.is_r_type()) {
-			RegDist = true;
-			RegWrite = true;
+			rDist = true;
+			rWrite = true;
 			op1 = true;
 		}
 		
 		else if(instruction.is_i_type()) {
-			RegWrite = true;
+			rWrite = true;
 			op1 = true;
 			ALUsrc = true;
 		}
 		
 		else if(opcode == 35) {
-			MemRead = true;
-			MemtoReg = true;
-			RegWrite = true;
+			mRead = true;
+			MtoR = true;
+			rWrite = true;
 			ALUsrc = true;
 		}
 
 		else if(opcode == 43) {
-			MemWrite = true;
+			mWrite = true;
 			ALUsrc = true;
 		}
 
@@ -45,7 +45,7 @@ public class Control {
 	}
 
 	public boolean isRegDist() {
-		return RegDist;
+		return rDist;
 	}
 
 	public boolean isBranch() {
@@ -53,11 +53,11 @@ public class Control {
 	}
 
 	public boolean isMemRead() {
-		return MemRead;
+		return mRead;
 	}
 
 	public boolean isMemtoReg() {
-		return MemtoReg;
+		return MtoR;
 	}
 
 	public boolean isOp1() {
@@ -69,7 +69,7 @@ public class Control {
 	}
 
 	public boolean isMemWrite() {
-		return MemWrite;
+		return mWrite;
 	}
 
 	public boolean isALUsrc() {
@@ -77,7 +77,7 @@ public class Control {
 	}
 
 	public boolean isRegWrite() {
-		return RegWrite;
+		return rWrite;
 	}
 
 

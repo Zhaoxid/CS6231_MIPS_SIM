@@ -4,12 +4,12 @@ public class Memory extends DataChanges {
 		super(1000);
 	}
 
-	public int cycle(int addr, int write_data, boolean memRead, boolean memWrite) {
-		if(memWrite) {
-			set(addr, write_data);
+	public int cycle(int addr, int wdata, boolean mRead, boolean mWrite) {
+		if(mWrite) {
+			set(addr, wdata);
 		}
 		
-		if(memRead) {
+		if(mRead) {
 			return get(addr);
 		}
 

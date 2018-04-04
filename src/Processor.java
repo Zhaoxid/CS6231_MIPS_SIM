@@ -4,7 +4,6 @@ import java.util.List;
 public class Processor {
 
 	private ProgramCounter pc;
-
 	private Register register;
 	private Memory memory;
 	private ALU alu;
@@ -90,24 +89,24 @@ public class Processor {
 		return pc.get() >= instructions.length() || instructions.fetch(pc).isExit();
 	}
 
-	public int getPcValue() {
+	public int getPC() {
 		return pc.get();
 	}
 
-	public int[] getRegisters() {
+	public int[] getReg() {
 		return register.getRawData();
 	}
 
-	public int[] getMemory() {
+	public int[] getMem() {
 		return memory.getRawData();
 	}
 
-	public List<Integer> getChangedRegisters() {
-		return register.getChangedIndices();
+	public List<Integer> getChangedReg() {
+		return register.getChangedIndex();
 	}
 
 	public List<Integer> getChangedMemory() {
-		return memory.getChangedIndices();
+		return memory.getChangedIndex();
 	}
 
 
