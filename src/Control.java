@@ -37,7 +37,12 @@ public class Control {
 			mWrite = true;
 			ALUsrc = true;
 		}
-
+		
+		else if(opcode == 2) {
+			Branch = true;
+			op0 = true;
+		}
+		
 		else if(opcode == 4) {
 			Branch = true;
 			op0 = true;

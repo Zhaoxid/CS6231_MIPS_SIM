@@ -75,7 +75,9 @@ public class Instruction {
 		} else if(op.equalsIgnoreCase("sw")) {
 			opcode = 43;
 		}
-
+		else if(op.equalsIgnoreCase("j")) {
+			opcode = 2;
+		}
 		else if(op.equalsIgnoreCase("beq")) {
 			opcode = 4;
 		}
@@ -107,6 +109,8 @@ public class Instruction {
 			rs = parseReg2(t1);
 			rt = parseReg2(t2);
 			imm = parseReg2(t3);
+		} else if(opcode == 2) {
+			imm = parseAddr(t1);
 		} else if(opcode == 4) {
 			rs = parseReg2(t1);
 			rt = parseReg2(t2);
@@ -241,7 +245,7 @@ public class Instruction {
 
 	public String representation(boolean hex) {
 		if(r_type) 
-			return String.format("%-22s", instruct);
-		else return String.format("%-22s (IMM:%d)", instruct, imm);
+			return String.format("%-25s", instruct);
+		else return String.format("%-25s (imm: %d)", instruct, imm);
 	}
 }

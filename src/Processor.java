@@ -70,7 +70,6 @@ public class Processor {
 		write_data = mux(alu_out, data_out, control.isMemtoReg());
 		register.write(control.isRegWrite(), write_data);
 
-
 		new_pc += 4; //PC+=4
 		branch_pc = new_pc + (i.getImm() << 2);
 		new_pc = mux(new_pc, branch_pc, control.isBranch() && alu_zero);

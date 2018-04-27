@@ -274,7 +274,10 @@ public class GUI {
 	public void setInfo() {
 		infoPane.insert("Forwarding: Enabled \n" + 
 						"Stalls: 0 \n" + 
-						"Hazards: 0 \n" +
-						"These features haven't been implemented yet.\n", 0);
+						"Hazards: 0 \n\n"+ 
+						"Input files: test.txt and test1.txt (mips_sim folder)\n" +
+						"Press step/run to start, press stop to halt." + 
+						"\n\n\nGroup Members:\n"
+						+ "Zhaoxin Deng, Chuyan Xu, Dongyu Wang\n", 0);
 	}
 }
